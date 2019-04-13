@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -24,40 +23,15 @@ namespace Display
 
 		private void Drawing1(object sender, RoutedEventArgs e)
 		{
-			var topLeft = new dgPoint(0, 0);
-			var topRight = new dgPoint(myCanvas.Width, 0);
-			var bottomLeft = new dgPoint(0, myCanvas.Height);
-			var bottomRight = new dgPoint(myCanvas.Width, myCanvas.Height);
-			var middle = new dgPoint(myCanvas.Width / 2, myCanvas.Height / 2);
-
-			AddTriangleSpin(middle, topRight, topLeft);
-			AddTriangleSpin(middle, topLeft, bottomLeft);
-			AddTriangleSpin(middle, bottomLeft, bottomRight);
-			AddTriangleSpin(middle, bottomRight, topRight);
+			DrawLines(DesignPrinter.Design1(myCanvas.Height, myCanvas.Width));
 		}
 
-		private void AddTriangleSpin(dgPoint p1, dgPoint p2, dgPoint p3)
+		private void DrawLines(List<dgLine> lines)
 		{
-			var pointQueue = new Queue<dgPoint>();
-
-			pointQueue.Enqueue(p1);
-			pointQueue.Enqueue(p2);
-			pointQueue.Enqueue(p3);
-
-			while(true)
+			foreach (var line in lines)
 			{
-				var first = pointQueue.Dequeue();
-				var second = pointQueue.Peek();
-				var line = new dgLine(first, second);
 				AddLine(line);
-				pointQueue.Enqueue(line.Fraction(0.03f));
-				if (length(line) < 15) break;
 			}
-		}
-
-		private double length(dgLine l)
-		{
-			return Math.Sqrt((l.p1.X-l.p2.X) * (l.p1.X - l.p2.X) + (l.p1.Y - l.p2.Y) * (l.p1.Y - l.p2.Y));
 		}
 
 		public void AddLine(dgLine dgLine)

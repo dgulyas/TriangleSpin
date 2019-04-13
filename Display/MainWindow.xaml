@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="840" Width="850">
 	<StackPanel Orientation="Horizontal">
-		<Canvas Name="myCanvas" Height="780" Width="780"/>
+		<Canvas Name="myCanvas" Height="780" Width="780" Margin="5"/>
 		<StackPanel Width="25" Margin="10">
 			<Button Name="BtnC" Height="20" Margin ="2">C</Button>
 			<Button Name="Btn1" Height="20" Margin ="2">1</Button>

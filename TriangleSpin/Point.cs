@@ -1,11 +1,11 @@
 ﻿namespace TriangleSpin
 {
-	public class dgPoint
+	public class DgPoint
 	{
 		public double X;
 		public double Y;
 
-		public dgPoint(double x, double y)
+		public DgPoint(double x, double y)
 		{
 			X = x;
 			Y = y;
