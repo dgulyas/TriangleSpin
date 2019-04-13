@@ -3,16 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Display"
         mc:Ignorable="d"
         Title="MainWindow" Height="840" Width="850">
 	<StackPanel Orientation="Horizontal">
-		<Canvas Name="myCanvas" Height="780" Width="780" Margin="5"/>
+		<Canvas Name="MyCanvas" Height="780" Width="780" Margin="5"/>
 		<StackPanel Width="25" Margin="10">
 			<Button Name="BtnC" Height="20" Margin ="2">C</Button>
 			<Button Name="Btn1" Height="20" Margin ="2">1</Button>
 			<Button Name="Btn2" Height="20" Margin ="2">2</Button>
-			<Button Name="Btn3" Height="20" Margin ="2">3</Button>
 		</StackPanel>
 	</StackPanel>
 

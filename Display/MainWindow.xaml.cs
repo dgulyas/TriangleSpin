@@ -14,19 +14,25 @@ namespace Display
 
 			BtnC.Click += Clear;
 			Btn1.Click += Drawing1;
+			Btn2.Click += Drawing2;
 		}
 
 		private void Clear(object sender, RoutedEventArgs e)
 		{
-			myCanvas.Children.Clear();
+			MyCanvas.Children.Clear();
 		}
 
 		private void Drawing1(object sender, RoutedEventArgs e)
 		{
-			DrawLines(DesignPrinter.Design1(myCanvas.Height, myCanvas.Width));
+			DrawLines(DesignPrinter.Design1(MyCanvas.Height, MyCanvas.Width));
 		}
 
-		private void DrawLines(List<dgLine> lines)
+		private void Drawing2(object sender, RoutedEventArgs e)
+		{
+			DrawLines(DesignPrinter.Design2(MyCanvas.Height, MyCanvas.Width));
+		}
+
+		private void DrawLines(IEnumerable<DgLine> lines)
 		{
 			foreach (var line in lines)
 			{
@@ -34,20 +40,20 @@ namespace Display
 			}
 		}
 
-		public void AddLine(dgLine dgLine)
+		public void AddLine(DgLine dgLine)
 		{
 			var myLine = new Line
 			{
 				Stroke = Brushes.Black,
-				X1 = dgLine.p1.X,
-				X2 = dgLine.p2.X,
-				Y1 = dgLine.p1.Y,
-				Y2 = dgLine.p2.Y,
+				X1 = dgLine.P1.X,
+				X2 = dgLine.P2.X,
+				Y1 = dgLine.P1.Y,
+				Y2 = dgLine.P2.Y,
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Center,
 				StrokeThickness = 2
 			};
-			myCanvas.Children.Add(myLine);
+			MyCanvas.Children.Add(myLine);
 		}
 
 	}
