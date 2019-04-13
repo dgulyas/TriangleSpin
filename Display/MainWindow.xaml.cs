@@ -7,13 +7,24 @@ using TriangleSpin;
 
 namespace Display
 {
-	public partial class MainWindow : Window
+	public partial class MainWindow
 	{
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			var topLeft = new dgPoint(0,0);
+			BtnC.Click += Clear;
+			Btn1.Click += Drawing1;
+		}
+
+		private void Clear(object sender, RoutedEventArgs e)
+		{
+			myCanvas.Children.Clear();
+		}
+
+		private void Drawing1(object sender, RoutedEventArgs e)
+		{
+			var topLeft = new dgPoint(0, 0);
 			var topRight = new dgPoint(myCanvas.Width, 0);
 			var bottomLeft = new dgPoint(0, myCanvas.Height);
 			var bottomRight = new dgPoint(myCanvas.Width, myCanvas.Height);
@@ -41,7 +52,6 @@ namespace Display
 				AddLine(line);
 				pointQueue.Enqueue(line.Fraction(0.03f));
 				if (length(line) < 15) break;
-
 			}
 		}
 
