@@ -7,21 +7,25 @@ using TriangleSpin;
 
 namespace Display
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			var size = 120;
+			var topLeft = new dgPoint(0,0);
+			var topRight = new dgPoint(myCanvas.Width, 0);
+			var bottomLeft = new dgPoint(0, myCanvas.Height);
+			var bottomRight = new dgPoint(myCanvas.Width, myCanvas.Height);
+			var middle = new dgPoint(myCanvas.Width / 2, myCanvas.Height / 2);
 
-			AddTriangleSpin(new dgPoint(0, 0), new dgPoint(0, size), new dgPoint(size, size / 2.0f));
+			AddTriangleSpin(middle, topRight, topLeft);
+			AddTriangleSpin(middle, topLeft, bottomLeft);
+			AddTriangleSpin(middle, bottomLeft, bottomRight);
+			AddTriangleSpin(middle, bottomRight, topRight);
 		}
 
-		public void AddTriangleSpin(dgPoint p1, dgPoint p2, dgPoint p3)
+		private void AddTriangleSpin(dgPoint p1, dgPoint p2, dgPoint p3)
 		{
 			var pointQueue = new Queue<dgPoint>();
 
@@ -35,7 +39,7 @@ namespace Display
 				var second = pointQueue.Peek();
 				var line = new dgLine(first, second);
 				AddLine(line);
-				pointQueue.Enqueue(line.Fraction(0.13f));
+				pointQueue.Enqueue(line.Fraction(0.03f));
 				if (length(line) < 15) break;
 
 			}
