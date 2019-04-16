@@ -78,8 +78,15 @@ namespace TriangleSpin
 		}
 
 		//points = List of points making up the shapes perimeter is order
-		private static IEnumerable<DgLine> ShapeSpin(List<DgPoint> points, float scale = 0.03f)
+		private static IEnumerable<DgLine> ShapeSpin(List<DgPoint> points, float scale = 0.03f, bool[] printLine = null)
 		{
+			//used to only show some of the lines. Only one side for example.
+			//Iterate through the values in the array, printing them if true.
+			//If doing a triangle {true, true, false} won't print one side.
+			if (printLine == null)
+				printLine = new[] {true};
+			var printLineIndex = 0;
+
 			var lines = new List<DgLine>();
 			var pointQueue = new Queue<DgPoint>();
 
@@ -96,9 +103,15 @@ namespace TriangleSpin
 				var first = pointQueue.Dequeue();
 				var second = pointQueue.Peek();
 				var line = new DgLine(first, second);
-				lines.Add(line);
+
+				printLineIndex = (printLineIndex + 1) % printLine.Length;
+				if (printLine[printLineIndex])
+				{
+					lines.Add(line);
+				}
+
 				pointQueue.Enqueue(line.Fraction(scale));
-				if (Length(line) < 18) break;
+				if (Length(line) < 1) break;
 			}
 
 			return lines;
